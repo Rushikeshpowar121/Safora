@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Tips - Safora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        function callEmergency() {
+          window.location.href = "tel:112"; // You can change 112 to 911 or any local emergency number
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #2c3e50);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav {
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(20, 30, 48, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav.scrolled {
+            padding: 0.5rem 2rem;
+            background: rgba(20, 30, 48, 0.95);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: #4e9af1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.2rem;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4e9af1;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:before {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            background: rgba(78, 154, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: auto;
+            background: rgba(20, 30, 48, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: #4e9af1;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            transform: translateX(5px);
+            color: #4e9af1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(78, 154, 241, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #4e9af1;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(78, 154, 241, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .page-content {
+            padding-top: 6rem;
+            padding-bottom: 3rem;
+        }
+
+        .safety-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(78, 154, 241, 0.2);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .safety-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(78, 154, 241, 0.5);
+        }
+
+        .safety-card-header {
+            background: rgba(20, 30, 48, 0.8);
+            padding: 1.5rem;
+            border-bottom: 2px solid rgba(78, 154, 241, 0.3);
+        }
+
+        .safety-card-body {
+            padding: 1.5rem;
+        }
+
+        .safety-icon {
+            background: rgba(78, 154, 241, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .safety-card:hover .safety-icon {
+            background: rgba(78, 154, 241, 0.8);
+            transform: scale(1.1);
+        }
+
+        .emergency-button {
+            background: linear-gradient(to right, #e52d27, #b31217);
+            color: white;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(229, 45, 39, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(229, 45, 39, 0.6);
+        }
+
+        .emergency-pulse {
+            position: relative;
+        }
+
+        .emergency-pulse::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(229, 45, 39, 0.6);
+            border-radius: 50px;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+        }
+
+        .resources-section {
+            background: rgba(20, 30, 48, 0.7);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid #4e9af1;
+        }
+
+        .resource-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background: rgba(20, 30, 48, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button.active {
+            background: #4e9af1;
+            box-shadow: 0 5px 15px rgba(78, 154, 241, 0.3);
+        }
+
+        .tab-button:hover:not(.active) {
+            background: rgba(78, 154, 241, 0.3);
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .floating-1 {
+            top: 20%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-2 {
+            top: 60%;
+            right: 5%;
+            animation: float 12s ease-in-out infinite 2s;
+        }
+
+        .floating-3 {
+            bottom: 10%;
+            left: 15%;
+            animation: float 10s ease-in-out infinite 1s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .safety-tip-highlight {
+            background: rgba(78, 154, 241, 0.1);
+            border-left: 3px solid #4e9af1;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #4e9af1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: #3a89e6;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="/" class="logo"><i class="fas fa-shield-alt"></i>Safora</a>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/maps" class="nav-link">Routes</a>
+            <a href="/tips" class="nav-link" style="background: rgba(78, 154, 241, 0.2);">Safety Tips</a>
+            <a href="/about" class="nav-link">About Us</a>
+          
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content max-w-6xl mx-auto px-4">
+        <!-- Floating Elements -->
+        <div class="floating-element floating-1">
+            <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+                <circle cx="100" cy="100" r="100" fill="#4e9af1" />
+            </svg>
+        </div>
+        <div class="floating-element floating-2">
+            <svg width="250" height="250" viewBox="0 0 250 250" fill="none">
+                <rect width="250" height="250" rx="50" fill="#4e9af1" />
+            </svg>
+        </div>
+        <div class="floating-element floating-3">
+            <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
+                <polygon points="90,0 180,180 0,180" fill="#4e9af1" />
+            </svg>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-12 animate__animated animate__fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300">Safety Tips &amp; Resources</span>
+            </h1>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto">Your comprehensive guide to staying safe while navigating through any area, day or night.</p>
+        </div>
+
+        <!-- Emergency Button -->
+        <div class="text-center mb-12 animate__animated animate__fadeIn animate__delay-1s">
+            <button onclick="callEmergency()" class="emergency-button emergency-pulse">
+                <i class="fas fa-phone-alt"></i> Emergency Call
+            </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mb-8 flex flex-wrap justify-center gap-4 animate__animated animate__fadeIn animate__delay-1s">
+            <button class="tab-button active" data-tab="personal">Personal Safety</button>
+            <button class="tab-button" data-tab="travel">Travel Safety</button>
+            <button class="tab-button" data-tab="digital">Digital Safety</button>
+            <button class="tab-button" data-tab="resources">Safety Resources</button>
+        </div>
+
+        <!-- Personal Safety Tips -->
+        <div id="personal" class="tab-content active">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="safety-card animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-location-arrow text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Share Your Location</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Always keep someone updated about your location via live sharing when commuting alone, especially at night. Consider using apps that allow friends or family to track your journey in real-time.</p>
+                        <div class="safety-tip-highlight mt-4">
+                            <p><strong>Pro Tip:</strong> Set up automated check-ins that notify your emergency contacts if you don't arrive at your destination in the expected timeframe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-card animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-map-marked-alt text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Avoid Isolated Routes</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Use routes that are well-lit and frequented by pedestrians. Avoid shortcuts through deserted areas, parks, or alleys, especially after dark. Stick to main roads even if it means taking a slightly longer route.</p>
+                        <div class="safety-tip-highlight mt-4">
+                            <p><strong>Pro Tip:</strong> Research your route beforehand using safety mapping apps like Safora that highlight safer paths based on community data.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-card animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-phone-alt text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Emergency Contacts</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Keep emergency contacts on speed dial and know how to quickly access them on your phone. Many smartphones have emergency features that can be activated without unlocking the device.</p>
+                        <div class="safety-tip-highlight mt-4">
+                            <p><strong>Pro Tip:</strong> Program emergency services and trusted contacts into your phone with the prefix "AA" so they appear at the top of your contact list.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-card animate__animated animate__fadeInUp animate__delay-4s">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-brain text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Trust Your Instincts</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>If something feels off, don't hesitate to leave or seek help immediately. Your intuition is a powerful safety tool. If you feel uncomfortable in any situation, remove yourself as quickly as possible.</p>
+                        <div class="safety-tip-highlight mt-4">
+                            <p><strong>Pro Tip:</strong> Practice being assertive and setting boundaries. It's better to appear rude than to ignore warning signs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-card animate__animated animate__fadeInUp animate__delay-5s">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-fist-raised text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Self-Defense Basics</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Consider taking a self-defense class to learn basic techniques. Knowledge of pressure points, proper striking techniques, and escape moves can boost your confidence and provide crucial skills in emergency situations.</p>
+                        <div class="safety-tip-highlight mt-4">
+                            <p><strong>Pro Tip:</strong> Carry legal personal safety devices like pepper spray or personal alarms where permitted by law.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-card animate__animated animate__fadeInUp animate__delay-6s">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-eye text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Stay Alert</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Maintain awareness of your surroundings at all times. Avoid using headphones or being distracted by your phone when walking alone. Make eye contact with people you pass to show you're aware of their presence.</p>
+                        <div class="safety-tip-highlight mt-4">
+                            <p><strong>Pro Tip:</strong> If you need to check your phone, stop in a well-lit area with your back against a wall to maintain visibility of your surroundings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Travel Safety Tips -->
+        <div id="travel" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-hotel text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Accommodation Safety</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Research accommodations thoroughly before booking. Choose rooms between the 2nd and 6th floors—high enough to deter break-ins but low enough for fire safety. Always use additional locks and never open your door without verifying who's there.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-taxi text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Transportation Safety</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Use reputable transportation services and verify your driver's identity before getting in. Share your ride details with someone you trust. Avoid unmarked taxis and always sit in the back seat when using rideshares.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-passport text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Document Security</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Keep digital copies of all important documents (passport, ID, insurance) in an encrypted cloud storage. Carry physical copies separately from originals. Consider using a money belt or hidden pouch for essential documents.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-globe text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Cultural Awareness</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Research local customs, dress codes, and safety concerns before traveling to a new location. Understanding cultural norms can help you blend in and avoid unwanted attention or misunderstandings.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-map text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Navigation Planning</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Download offline maps before traveling to new areas. Mark safe locations like police stations, hospitals, and your accommodation. Use Safora's route planner to identify safer paths in unfamiliar cities.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-first-aid text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Health Precautions</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Carry a basic first aid kit when traveling. Research local health concerns and emergency services at your destination. Consider travel insurance that covers medical emergencies and evacuation if needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Digital Safety Tips -->
+        <div id="digital" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-lock text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Secure Your Accounts</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Use strong, unique passwords for all accounts and enable two-factor authentication whenever possible. Consider using a reputable password manager to generate and store complex passwords securely.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-user-secret text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Privacy Settings</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Regularly review privacy settings on all social media accounts. Limit the personal information you share online and be cautious about posting real-time location updates that could reveal your whereabouts.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-wifi text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Public Wi-Fi Safety</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Avoid accessing sensitive information (banking, email) on public Wi-Fi networks. Consider using a VPN for encrypted connections when using public internet access points.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-shield-alt text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Device Security</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Keep your devices locked with strong passwords or biometric authentication. Enable remote wiping capabilities in case your device is lost or stolen. Regularly update all software and apps.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-comments text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Online Communication</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Be cautious about online relationships. Never share personal details with someone you've only met online. Consider using encrypted messaging apps for sensitive communications.</p>
+                    </div>
+                </div>
+
+                <div class="safety-card">
+                    <div class="safety-card-header">
+                        <div class="safety-icon mx-auto">
+                            <i class="fas fa-camera text-2xl text-blue-200"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold text-center text-blue-200">Photo Privacy</h2>
+                    </div>
+                    <div class="safety-card-body">
+                        <p>Check that photos you share online don't reveal sensitive information like your home address, workplace, or routine locations. Turn off location tagging on photos unless necessary.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Safety Resources -->
+        <div id="resources" class="tab-content">
+            <div class="resources

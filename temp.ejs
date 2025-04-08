@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safora - Your Safety Route Companion</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .nav {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeIn 1s ease-out 1s backwards;
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button-primary {
+            background: #fff;
+            color: #1a2a6c;
+        }
+
+        .button-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .features {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: fadeIn 1s ease-out 1.5s backwards;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            width: 250px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle1 { width: 100px; height: 100px; top: 20%; left: 20%; animation-delay: 0s; }
+        .circle2 { width: 150px; height: 150px; top: 50%; right: 20%; animation-delay: 2s; }
+        .circle3 { width: 80px; height: 80px; bottom: 20%; left: 50%; animation-delay: 4s; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#" class="logo">Safora</a>
+        <div class="nav-links">
+            <a href="#" class="nav-link">Home</a>
+            <a href="/maps" class="nav-link">Routes</a>
+            <a href="/tips" class="nav-link">Safety Tips</a>
+            <a href="#" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="floating-circle circle1"></div>
+        <div class="floating-circle circle2"></div>
+        <div class="floating-circle circle3"></div>
+
+        <div class="hero-content">
+            <h1 class="title">Navigate Safely with Safora</h1>
+            <p class="subtitle">Your intelligent companion for safer journeys</p>
+            
+            <div class="cta-buttons">
+                <a href="/maps" class="button button-primary">Get Started</a>
+                <!-- <a href="/signup" class="button button-secondary">Learn More</a> -->
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🛣️</div>
+                    <h3>Smart Routes</h3>
+                    <p>AI-powered safety-first route planning</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚨</div>
+                    <h3>Real-time Alerts</h3>
+                    <p>Instant notifications about safety concerns</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>24/7 Support</h3>
+                    <p>Always there when you need help</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
