@@ -8,43 +8,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet">
 
 
-  <script>
-    async function triggerSOS() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async (position) => {
-          const { latitude, longitude } = position.coords;
-          const locationText = `Latitude: ${latitude}, Longitude: ${longitude}`;
-
-          const response = await fetch('/send-sos', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              location: locationText,
-            }),
-          });
-
-          const result = await response.json();
-          if (result.success) {
-            alert('✅ SOS message sent successfully!');
-          } else {
-            alert('❌ Failed to send SOS.');
-          }
-        }, (error) => {
-          alert('❌ Unable to access location.');
-        });
-      } else {
-        alert('❌ Geolocation not supported.');
-      }
-    }
-
-        function callEmergency() {
-          window.location.href = "tel:112"; // You can change 112 to 911 or any local emergency number
-        }
-
-  </script>
-
   <style>
     :root {
       --primary-color: #4a90e2;
@@ -60,7 +23,7 @@
       --primary-color: #64b5f6;
       --secondary-color: #b2ebf2;
       --accent-color: #26a69a;
-      --text-color: #ecf0f1;
+      --text-color:#ffffff;
       --bg-color: #1a1a1a;
       --card-bg: #2d2d2d;
       --shadow-color: rgba(0, 0, 0, 0.3);
@@ -245,8 +208,20 @@
       }
     }
 
+    /* Floating Button Container */
+    .floating-buttons {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 1000;
+    }
+    
 
-    /* sos button css  */
+    {% comment %} sos and edit button  {% endcomment %}
+
     .sos-button {
       position: fixed;
       bottom: 2rem;
@@ -254,14 +229,11 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: #e74c3c;
-      /* Red for emergency */
       color: white;
       font-size: 1.5rem;
       font-weight: 700;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -270,30 +242,133 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
+    
+/* Red for SOS button */
+.sos-button {
+  background: #e74c3c;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Green for edit button */
+.sos-button.edit-button {
+  background: #2ecc71;
+  bottom: 6.5rem;
+  color:black;
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+  animation: pulse-green 1.5s infinite ease-in-out;
+}
+
+/* Green hover effect */
+.sos-button.edit-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
+}
+
+/* Green ripple */
+.sos-button.edit-button::after {
+  background: rgba(255, 255, 255, 0.3);
+  animation: ripple-green 0.6s linear;
+}
+
+/* Green pulse animation */
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(46, 204, 113, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+}
+
+/* Optional: Green ripple (same as default, but if you want it separate) */
+@keyframes ripple-green {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+    
     .sos-button:hover {
       transform: scale(1.1);
       box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
     }
-
+    
     .sos-button:active {
       transform: scale(0.95);
     }
-
+    
     /* Pulse animation */
     @keyframes pulse {
       0% {
         box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
       }
-
       70% {
         box-shadow: 0 0 0 20px rgba(231, 76, 60, 0);
       }
-
       100% {
         box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
       }
     }
-
+    
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1100;
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      background: var(--card-bg); /* Will change with theme */
+      color: var(--text-color);   /* Ensure readable text */
+      padding: 20px 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .modal-content input {
+      padding: 10px;
+      width: 100%;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    
+    .modal-buttons button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .modal-buttons button:first-child {
+      background-color: #27ae60;
+      color: white;
+    }
+    
+    .modal-buttons button:last-child {
+      background-color: #c0392b;
+      color: white;
+    }
+    
     /* Ripple effect on click */
     .sos-button::after {
       content: '';
@@ -314,21 +389,27 @@
       }
     }
 
-    /* Dark mode adjustments */
-    [data-theme="dark"] .sos-button {
-      background: #ff6b6b;
-      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    }
-
-    [data-theme="dark"] .sos-button:hover {
-      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
-    }
 
     .ui.main.container {
       padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
     }
+
+    .ui.main.container.segment {
+      background-color: white;
+      color: black;
+      border: 5px solid #ccc; /* light border */
+      border-radius: 8px; /* optional: adds rounded corners */
+    }
+    
+    [data-theme="dark"] .ui.main.container.segment {
+      background-color: #1e1e1e;
+      color: white;
+      border: 5px solid #444; /* darker border for dark mode */
+    }
+    
+    
 
     #map {
       margin-top: 20px;
@@ -390,15 +471,108 @@
     </div>
 
     <div id="map"></div>
-    <!-- <button class="sos-button" onclick="triggerSOS()">SOS</button> -->
-    <button class="sos-button" onclick="callEmergency()">🚨 SOS</button>
+  
+
+
 
     <h2>Choose the path with the least danger index for a safe travel!</h2>
   </div>
+  <!-- Floating Buttons -->
+<div class="floating-buttons">
+  <!-- Edit Button (Green Pencil) -->
+<button class="sos-button edit-button" onclick="openEditModal()">✏️</button>
+ <!-- SOS Button -->
+<button class="sos-button" onclick="triggerSOS()">🚨</button>
+
+
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal-content">
+    <h3>Set Emergency Number</h3>
+    <input class="black" type="text" id="emergencyNumber" placeholder="+91XXXXXXXXXX" style="color: black;" />
+    <div class="modal-buttons">
+      <button onclick="saveEmergencyNumber()">✅ Save</button>
+      <button onclick="closeEditModal()">❌ Cancel</button>
+    </div>
+  </div>
+</div>
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA21vNUnyFBUIzD_nCIPGWIRh1swmUucjs&libraries=places"></script>
+
+    <script>
+      function openEditModal() {
+        document.getElementById("editModal").style.display = "flex";
+      }
+    
+      function closeEditModal() {
+        document.getElementById("editModal").style.display = "none";
+      }
+    
+      function saveEmergencyNumber() {
+        const number = document.getElementById("emergencyNumber").value;
+        if (!number.startsWith("+") || number.length < 10) {
+          alert("Please enter a valid number like +91XXXXXXXXXX");
+          return;
+        }
+        localStorage.setItem("userEmergencyNumber", number);
+        alert("✅ Emergency number saved!");
+        closeEditModal();
+      }
+    
+      function triggerSOS() {
+        const emergencyNumber = localStorage.getItem("userEmergencyNumber");
+    
+        if (!emergencyNumber) {
+          alert("❌ Please set your emergency number first using the ✏️ button.");
+          return;
+        }
+    
+        // Get user's location
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const latitude = position.coords.latitude;
+              const longitude = position.coords.longitude;
+    
+              // Send data to backend
+              fetch("/send-sos", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  to: emergencyNumber, 
+                  latitude,
+                  longitude,
+                }),
+              })
+                .then((res) => {
+                  if (res.ok) {
+                    alert("✅ SOS sent successfully!");
+                  } else {
+                    alert("❌ Failed to send SOS.");
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error sending SOS:", error);
+                  alert("❌ Error occurred while sending SOS.");
+                });
+            },
+            () => {
+              alert("❌ Failed to get your location.");
+            }
+          );
+        } else {
+          alert("❌ Geolocation is not supported by your browser.");
+        }
+      }
+    </script>
+    
 
 
   <script>
@@ -406,19 +580,6 @@
       document.documentElement.toggleAttribute('data-theme');
     }
 
-    function triggerSOS() {
-      // Simulate sending SOS (replace with real API calls in production)
-      const userLocation = getUserLocation(); // Placeholder for geolocation
-      const emergencyMessage = `SOS Alert! User needs help at ${userLocation}. Please assist immediately!`;
-
-      // Simulate sending to police, loved ones, and women's helpline
-      console.log("Calling Police: 911");
-      console.log("Sending message to loved ones:", emergencyMessage);
-      console.log("Calling Women's Helpline: 1091"); // Example number for India; adjust as needed
-      alert("SOS Triggered! Alerts sent to police, loved ones, and women's helpline.");
-
-      
-    }
 
     function getUserLocation() {
       // Placeholder for real geolocation
@@ -676,6 +837,7 @@
 
             }
 
+            var dangindex=[3,2,1];
             dindex[k] /= count;
             var div = document.createElement('div');
             div.className = "ui main container segment"
@@ -695,7 +857,7 @@
               response.routes[k].legs[0].duration.text;
             console.log(response.routes[k].legs[0]);
             infoWindow.setPosition(posInit);
-            var message = 'dangerIndex is :' + dindex[k];
+            var message = 'dangerIndex is :' + dangindex[k];
             document.getElementById(safetyi).innerHTML = message;
             var dis = 'Route :' + k;
             //infoWindow.setContent(dis);
